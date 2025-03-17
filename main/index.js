@@ -1,3 +1,7 @@
+function copy() {
+    navigator.clipboard.writeText(document.getElementById("resultPassword").textContent);
+}
+
 function main() {
 
     const letters = document.getElementById("letters").value;
@@ -86,7 +90,7 @@ function main() {
 
     resultDiv.style.display = "block";
     document.getElementById("passwordDeclaration").innerHTML = `<h1>You password</h1>`;
-    document.getElementById("resultPassword").innerHTML = `${resultPassword} <button><i class="fa-solid fa-copy"></i></button>`;
+    document.getElementById("resultPassword").innerHTML = `${resultPassword} <button id="copyButton" onclick="copy()"><i class="fa-solid fa-copy"></i></button>`;
 
     // модуль проверки
 
