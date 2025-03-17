@@ -51,8 +51,42 @@ function main() {
         }
     }
 
+    function check(symbol) {
+        const checkArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        for (let a = 0; a < checkArray.length; a++) {
+            if (symbol === checkArray[a]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    document.getElementById("resultPassword").innerHTML = `Ваш пароль - ${resultPassword}`;
+    const resultDiv = document.getElementById("resultPasswordContainerMain");
+    const lettersInput = document.getElementById("letters");
+    const numbersInput = document.getElementById("numbers");
+    const symbolsInput = document.getElementById("symbols");
+
+    if (check(Number(letters)) !== true) {
+        lettersInput.style.borderColor = 'red';
+    } else {
+        lettersInput.style.borderColor = '#42b72a';
+    }
+
+    if (check(Number(numbers)) !== true) {
+        numbersInput.style.borderColor = 'red';
+    } else {
+        numbersInput.style.borderColor = '#42b72a';
+    }
+
+    if (check(Number(symbols)) !== true) {
+        symbolsInput.style.borderColor = 'red';
+    } else {
+        symbolsInput.style.borderColor = '#42b72a';
+    }
+
+    resultDiv.style.display = "block";
+    document.getElementById("passwordDeclaration").innerHTML = `<h1>You password</h1>`;
+    document.getElementById("resultPassword").innerHTML = `${resultPassword} <button><i class="fa-solid fa-copy"></i></button>`;
 
     // модуль проверки
 
