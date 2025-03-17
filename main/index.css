@@ -2,12 +2,13 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .mainForm {
     text-align: center;
-    margin-top: 150px;
-    width: 400px;
+    margin-top: 100px;
+    width: 600px;
     background-color: #d9f0ff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -19,7 +20,7 @@
     text-align: center;
     input {
         margin: 10px;
-        width: 184px;
+        width: 320px;
         padding: 10px;
         border: 2px solid #3b5998;
         border-radius: 4px;
@@ -41,12 +42,12 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: box-shadow 0.3s;
     box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.2);
 }
 
 .agreeButton button:hover {
-    background-color: #0056b3;
+    box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.4);
 }
 
 .themeChangeMain {
@@ -63,10 +64,58 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: box-shadow 0.3s;
         box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.2);
     }
     button:hover {
-        background-color: #0056b3;
+        box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.3);
     }
+}
+
+.resultPasswordContainerMain {
+    display: none;
+}
+
+.passwordDeclaration {
+    margin: 20px;
+}
+
+.resultPasswordContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        margin: 10px;
+        text-align: center;
+        font-size: 14px;
+        width: 35px;
+        height: 35px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: box-shadow 0.3s;
+        box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.2);
+    }
+    button:hover {
+        box-shadow: 10px 10px 10px rgba(0, 1, 1, 0.3);
+    }
+}
+
+.resultPassword {
+    background-color: white;
+    margin-top: 20px;
+    border: whitesmoke solid 2px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 25px;
+    width: 600px;
+    h1 {
+        margin: 10px;
+    }
+}
+
+.passwordDeclaration {
+    font-size: 15px;
 }
