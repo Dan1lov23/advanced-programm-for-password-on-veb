@@ -56,7 +56,7 @@ function main() {
     }
 
     function check(symbol) {
-        const checkArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const checkArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
         for (let a = 0; a < checkArray.length; a++) {
             if (symbol === checkArray[a]) {
                 return true;
@@ -70,19 +70,19 @@ function main() {
     const numbersInput = document.getElementById("numbers");
     const symbolsInput = document.getElementById("symbols");
 
-    if (check(Number(letters)) !== true) {
+    if (check(letters) === false) {
         lettersInput.style.borderColor = 'red';
     } else {
         lettersInput.style.borderColor = '#42b72a';
     }
 
-    if (check(Number(numbers)) !== true) {
+    if (check(numbers) === false) {
         numbersInput.style.borderColor = 'red';
     } else {
         numbersInput.style.borderColor = '#42b72a';
     }
 
-    if (check(Number(symbols)) !== true) {
+    if (check(symbols) === false) {
         symbolsInput.style.borderColor = 'red';
     } else {
         symbolsInput.style.borderColor = '#42b72a';
@@ -91,20 +91,33 @@ function main() {
     resultDiv.style.display = "block";
     document.getElementById("passwordDeclaration").innerHTML = `<h1>You password</h1>`;
     document.getElementById("resultPassword").innerHTML = `${resultPassword} <button id="copyButton" onclick="copy()"><i class="fa-solid fa-copy"></i></button>`;
+}
 
-    // модуль проверки
+function test() {
+
+    // модуль проверки (функция тестов)
+
+    // получаем пароль
+    let resultPassword = document.getElementById("resultPassword").innerText;
 
     // тест для проверки на три повторяющихся символа в пароле подряд
-
     function testPasswordOne(resultPassword) {
         for (let a = 0; a < resultPassword.length; a++) {
             if (resultPassword[a] === resultPassword[a + 1] && resultPassword[a] === resultPassword[a + 2]) {
-                console.log("3 повторяющихся символа подряд представляют угрозу безопасности");
+                return false;
             }
         }
+        return true
     }
 
-    // тест для проверки на 4 одинкавых символа подряд
+    if (testPasswordOne(resultPassword) === false) {
+        alert("3 повторяющихся символа подряд представляют угрозу безопасности");
+        document.getElementById("test1").innerHTML = `<p>Consecutive characters test</p>`
+    } else if (testPasswordOne(resultPassword) === true) {
+        document.getElementById("test1").innerHTML = `<p>Consecutive characters test - <i class="fa-solid fa-check"></i></p>`
+    }
+
+    // тест для проверки на 4 одинкавых символа в пароле
 
     function testPasswordTwo(resultPassword) {
         for (let a = 0; a < resultPassword.length; a++) {
@@ -115,10 +128,17 @@ function main() {
                     occurrencesCounter++;
                 }
                 if (occurrencesCounter => 4) {
-                    console.log("4 одинаковых символа в пароле представляют угрозу безопасности");
+                    return false;
                 }
             }
         }
+    }
+
+
+    if (testPasswordTwo(resultPassword) === false) {
+        alert("4 одинаковых символа в пароле представляют угрозу безопасности");
+    } else {
+        document.getElementById('test2').innerHTML = `<p>Many identical characters test - <i class="fa-solid fa-check"></i></p>`
     }
 
     // тест для проверки того, состоит ли пароль только из букв латинского алфавита
@@ -146,3 +166,25 @@ function main() {
         return false;
     }
 }
+
+function testPasswordTwo(resultPassword) {
+    let occurrencesCounter = 0;
+    for (let a = 0; a < resultPassword.length; a++) {
+        let checkSymbol = resultPassword[a];
+        for (let a = 0; a < resultPassword.length; a++) {
+            console.log(resultPassword[a], checkSymbol);
+            if (checkSymbol === resultPassword[a]) {
+                occurrencesCounter++;
+            }
+        }
+        console.log(occurrencesCounter)
+        if (Number(occurrencesCounter) >= 4) {
+            return false;
+        } else {
+            return true;
+        }
+        occurrencesCounter = 0;
+    }
+}
+
+console.log(testPasswordTwo("dddfsds"));
