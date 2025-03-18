@@ -55,11 +55,14 @@ function main() {
         }
     }
 
-    function check(symbol) {
+    function check(string) {
+        string = string.split("");
         const checkArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        for (let a = 0; a < checkArray.length; a++) {
-            if (symbol === checkArray[a]) {
-                return true;
+        for (let a = 0; a < string.length; a++) {
+            for (let b = 0; b < checkArray.length; b++) {
+                if (string[a] === checkArray[b]) {
+                    return true;
+                }
             }
         }
         return false;
@@ -111,7 +114,7 @@ function test() {
     }
 
     if (testPasswordOne(resultPassword) === false) {
-        alert("3 повторяющихся символа подряд представляют угрозу безопасности");
+        alert("3 repeating characters in a row pose a security risk");
         document.getElementById("test1").innerHTML = `<p>Consecutive characters test</p>`
     } else if (testPasswordOne(resultPassword) === true) {
         document.getElementById("test1").innerHTML = `<p>Consecutive characters test - <i class="fa-solid fa-check"></i></p>`
@@ -120,23 +123,26 @@ function test() {
     // тест для проверки на 4 одинкавых символа в пароле
 
     function testPasswordTwo(resultPassword) {
+        let occurrencesCounter = 0;
         for (let a = 0; a < resultPassword.length; a++) {
             let checkSymbol = resultPassword[a];
-            let occurrencesCounter = 0;
             for (let a = 0; a < resultPassword.length; a++) {
                 if (checkSymbol === resultPassword[a]) {
                     occurrencesCounter++;
                 }
-                if (occurrencesCounter => 4) {
-                    return false;
-                }
             }
+            if (Number(occurrencesCounter) >= 4) {
+                return false;
+            } else {
+                return true;
+            }
+            occurrencesCounter = 0;
         }
     }
 
-
     if (testPasswordTwo(resultPassword) === false) {
-        alert("4 одинаковых символа в пароле представляют угрозу безопасности");
+        document.getElementById('test2').innerHTML = `<p>Many identical characters test</p>`
+        alert("4 identical characters in a password pose a security risk");
     } else {
         document.getElementById('test2').innerHTML = `<p>Many identical characters test - <i class="fa-solid fa-check"></i></p>`
     }
@@ -154,6 +160,13 @@ function test() {
         return false;
     }
 
+    if (onlyLettersPasswordCheck(resultPassword) === false) {
+        document.getElementById('test3').innerHTML = `<p>Only letters test</p>`
+        alert('The password is not secure because it consists only of letters.');
+    } else {
+        document.getElementById('test3').innerHTML = `<p>Only letters test - <i class="fa-solid fa-check"></i></p>`
+    }
+
     // тест для проверки того, состоит ли парооль только из цифр
 
     function onlyNumbersPasswordCheck(resultPassword) {
@@ -166,25 +179,3 @@ function test() {
         return false;
     }
 }
-
-function testPasswordTwo(resultPassword) {
-    let occurrencesCounter = 0;
-    for (let a = 0; a < resultPassword.length; a++) {
-        let checkSymbol = resultPassword[a];
-        for (let a = 0; a < resultPassword.length; a++) {
-            console.log(resultPassword[a], checkSymbol);
-            if (checkSymbol === resultPassword[a]) {
-                occurrencesCounter++;
-            }
-        }
-        console.log(occurrencesCounter)
-        if (Number(occurrencesCounter) >= 4) {
-            return false;
-        } else {
-            return true;
-        }
-        occurrencesCounter = 0;
-    }
-}
-
-console.log(testPasswordTwo("dddfsds"));
