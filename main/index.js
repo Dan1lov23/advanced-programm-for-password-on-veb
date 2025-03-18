@@ -94,12 +94,19 @@ function main() {
 
     // модуль проверки
 
-    function checkPasswordLevel1(resultPassword) {
+    // тест для проверки на три повторяющихся символа в пароле подряд
+
+    function testPasswordOne(resultPassword) {
         for (let a = 0; a < resultPassword.length; a++) {
             if (resultPassword[a] === resultPassword[a + 1] && resultPassword[a] === resultPassword[a + 2]) {
                 console.log("3 повторяющихся символа подряд представляют угрозу безопасности");
             }
         }
+    }
+
+    // тест для проверки на 4 одинкавых символа подряд
+
+    function testPasswordTwo(resultPassword) {
         for (let a = 0; a < resultPassword.length; a++) {
             let checkSymbol = resultPassword[a];
             let occurrencesCounter = 0;
@@ -112,5 +119,30 @@ function main() {
                 }
             }
         }
+    }
+
+    // тест для проверки того, состоит ли пароль только из букв латинского алфавита
+
+    function onlyLettersPasswordCheck(resultPassword) {
+        const checkLettersArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        for (let a = 0; a < resultPassword.length; a++) {
+            if (checkLettersArray.includes(resultPassword[a]) === false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // тест для проверки того, состоит ли парооль только из цифр
+
+    function onlyNumbersPasswordCheck(resultPassword) {
+        const checkNumbersArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        for (let a = 0; a < resultPassword.length; a++) {
+            if (checkNumbersArray.includes(resultPassword[a]) === false) {
+                return true;
+            }
+        }
+        return false;
     }
 }
